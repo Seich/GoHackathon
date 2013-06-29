@@ -1,8 +1,8 @@
 
 package ;
 
-import org.flixel.FlxTilemap;
 import org.flixel.addons.FlxCaveGenerator;
+import org.flixel.FlxTilemap;
 
 class Cave extends FlxTilemap
 {
