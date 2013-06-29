@@ -2,7 +2,9 @@ package;
 
 import nme.Assets;
 import nme.geom.Rectangle;
+import nme.Lib;
 import nme.net.SharedObject;
+import org.flixel.plugin.photonstorm.FlxDisplay;
 import org.flixel.FlxButton;
 import org.flixel.FlxG;
 import org.flixel.FlxPath;
@@ -25,7 +27,11 @@ class MenuState extends FlxState
 		#end		
 		#if !FLX_NO_MOUSE
 			FlxG.mouse.show();
-		#end		
+		#end
+		
+		var startButton = new FlxButton(Lib.current.stage.stageWidth/2 ,Lib.current.stage.stageHeight/2,"Start",onStartClick);
+		add(startButton);
+		//FlxDisplay.screenCenter(startButton,true,true);	
 	}
 	
 	override public function destroy():Void
@@ -36,8 +42,11 @@ class MenuState extends FlxState
 	override public function update():Void
 	{
 		super.update();
-		if (FlxG.keys.justPressed("SPACE")) {
-			FlxG.switchState(new PlayState());
-		}
 	}	
+
+	private function onStartClick( ):Void
+    {
+        
+        FlxG.switchState( new PlayState( ) );
+    }
 }
