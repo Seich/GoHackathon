@@ -40,7 +40,7 @@ class PlayState extends FlxState
 		FlxControl.player1.setStandardSpeed(100, false);
 
 		var health: FlxBar = new FlxBar(16, 64, FlxBar.FILL_LEFT_TO_RIGHT, 64, 6, player, "health", 0, 100);
-		health.trackParent(0, -10);
+		health.trackParent(-32, -10);
 
 		add(tilemap);
 		add(player);
@@ -57,5 +57,6 @@ class PlayState extends FlxState
 	{
 		super.update();
 		FlxG.collide(player, tilemap);
+		FlxG.camera.follow(player);
 	}
 }
