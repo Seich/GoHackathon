@@ -4,6 +4,6 @@ import org.flixel.FlxG;
  
 class Registry
 {
-    public static var player:Player; 
-    public static var cave:Cave; 
+    public static var player: Player; 
+    public static var cave: Cave; 
 }

@@ -23,11 +23,13 @@ class PlayState extends FlxState
 		}
 
 		// create Player		
-		Registry.player = player = new Player();
+		Registry.player = new Player();
 		
 		// Create player controls
-		FlxControl.create(player, FlxControlHandler.MOVEMENT_INSTANT, FlxControlHandler.STOPPING_INSTANT);
+		FlxControl.create(Registry.player, FlxControlHandler.MOVEMENT_INSTANT, FlxControlHandler.STOPPING_INSTANT);
 		FlxControl.player1.setStandardSpeed(250, false);
+		FlxControl.player1.setFireButton("SPACE", FlxControlHandler.KEYMODE_PRESSED, 250, Registry.player.gun.fire);
+
 		
 		// Generate Cave
 		Registry.cave = new Cave("assets/data/tile.png", 32, 32);
