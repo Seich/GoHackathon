@@ -64,16 +64,26 @@ class PlayState extends FlxState
 		zombie.hurt(1);
 		bullet.kill();
 	}
+
+	function zombieTouchesCat(zombie:FlxObject, cat:FlxObject) {
+		if (!cat.flickering) {
+			cat.hurt(1);
+			cat.flicker(1);
+			FlxG.log(cat.health);
+		}
+	}
 	
 	override public function update():Void {	
 		super.update();
 
+		FlxG.overlap(Registry.zombies, Registry.player, zombieTouchesCat);
 		FlxG.collide(Registry.zombies, Registry.level);
 		FlxG.collide(Registry.player, Registry.level);
 
 		Registry.level.follow();
-		//Registry.zombies.callAll("getPath");
+		Registry.zombies.callAll("getPath");
 		FlxG.overlap(Registry.player.gun.group, Registry.zombies, bulletHitZombie);
+
 	}
 
 }

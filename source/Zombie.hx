@@ -79,7 +79,7 @@ class Zombie extends FlxSprite {
         playerPath = Registry.level.findPath(pathStart, pathEnd);
          
         if (playerPath != null) {
-            this.followPath(playerPath);     
+            this.followPath(playerPath, this.speed);     
         }
 
         if (this.pathSpeed == 0) {
@@ -95,18 +95,18 @@ class Zombie extends FlxSprite {
         var distY:Float = this.y - targ.y;
         if (distX > distY) {
                 if (distX > 0) {
-                this.velocity.x = -50;
+                this.velocity.x = -speed;
                 this.facing = FlxObject.LEFT;
             } else {
-                this.velocity.x = 50;
+                this.velocity.x = speed;
                 this.facing = FlxObject.RIGHT;
             }
         } else {
             if (distY > 0) {
-                this.velocity.y = -50;
+                this.velocity.y = -speed;
                 this.facing = FlxObject.UP;
             } else {
-                this.velocity.y = 50;
+                this.velocity.y = speed;
                 this.facing = FlxObject.DOWN;
             }    
         }

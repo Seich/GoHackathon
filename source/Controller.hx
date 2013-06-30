@@ -93,38 +93,35 @@ class Controller extends FlxGroup
 	            var px:Int = touch.screenX;
 	            var py:Int = touch.screenY;
 
-	            if (up.overlapsPoint(new FlxPoint(px, py))) {
-	            	up.frame = 2;
-	            	Registry.player.velocity.y = -80;
-	            	Registry.player._dir = "up";
-	            	Registry.player.gun.setBulletDirection(FlxWeapon.BULLET_UP, Registry.player.bullet_speed);
-	            }
-
-	            if (down.overlapsPoint(new FlxPoint(px, py))) {
-	            	down.frame = 2;
-	            	Registry.player.velocity.y = 80;
-	            	Registry.player._dir = "down";
-	            	Registry.player.gun.setBulletDirection(FlxWeapon.BULLET_DOWN, Registry.player.bullet_speed);
-	            }
-
 	            if (left.overlapsPoint(new FlxPoint(px, py))) {
 	            	left.frame = 2;
 	            	Registry.player.velocity.x = -80;
 	            	Registry.player._dir = "left";
 	            	Registry.player.gun.setBulletDirection(FlxWeapon.BULLET_LEFT, Registry.player.bullet_speed);
-	            }
-
-	            if (right.overlapsPoint(new FlxPoint(px, py))) {
+	            } else if (right.overlapsPoint(new FlxPoint(px, py))) {
 	            	right.frame = 2;
 	            	Registry.player.velocity.x = 80;
 	            	Registry.player._dir = "right";
 	            	Registry.player.gun.setBulletDirection(FlxWeapon.BULLET_RIGHT, Registry.player.bullet_speed);
 	            }
 
+	            if (up.overlapsPoint(new FlxPoint(px, py))) {
+	            	up.frame = 2;
+	            	Registry.player.velocity.y = -80;
+	            	Registry.player._dir = "up";
+	            	Registry.player.gun.setBulletDirection(FlxWeapon.BULLET_UP, Registry.player.bullet_speed);
+	            } else if (down.overlapsPoint(new FlxPoint(px, py))) {
+	            	down.frame = 2;
+	            	Registry.player.velocity.y = 80;
+	            	Registry.player._dir = "down";
+	            	Registry.player.gun.setBulletDirection(FlxWeapon.BULLET_DOWN, Registry.player.bullet_speed);
+	            }
+
 	            if (fire.overlapsPoint(new FlxPoint(px, py))) {
 	            	fire.frame = 2;
 	            	Registry.player.gun.fire();
 	            }
+	            
 	            Registry.player._touch = true;
 	        } else {
 	        	this.setAll("frame", 1);
