@@ -26,6 +26,7 @@ class Main extends Sprite
 	}
 	
 	private function init(?e:Event = null):Void 
+	
 	{
 		if (hasEventListener(Event.ADDED_TO_STAGE))
 		{
