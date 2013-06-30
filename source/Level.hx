@@ -32,14 +32,7 @@ class Level extends FlxTilemap
 			
 		level = FlxCaveGenerator.convertMatrixToStr(matrix);
 		
-		loadMap(level, tileset, width, height, this.auto);
-		for (i in 1...12) {
-			this.setTileProperties(i,FlxObject.NONE);
-		}
-
-		for (i in 12...20) {
-			this.setTileProperties(i,FlxObject.ANY);
-		}
+		loadMap(level, tileset, width, height);
 
 
 

@@ -43,34 +43,9 @@ class PlayState extends FlxState
 
 		add(Registry.level);
 		add(Registry.player);
+
 		add(Registry.zombies);
 		add(Registry.player.gun.group);
-
-		/*
-		var rainEmitter:FlxEmitter = new FlxEmitter(0, 0, 200);
-	    rainEmitter.setSize(FlxG.width, 0);
-	    rainEmitter.setXSpeed(5, 5);
-	    rainEmitter.setYSpeed(50, 50);
-	    rainEmitter.setRotation(0, 0);
-	    add(rainEmitter);
-	    var rainDrop:FlxParticle;
-        for (i in 0...rainEmitter.maxSize) 
-        {
-            rainDrop = new FlxParticle();
-            #if !neko
-            rainDrop.makeGraphic(2, 6, 0xFFFFFFFF);
-            #else
-            rainDrop.makeGraphic(2, 2, {rgb: 0xFFFFFF, a: 0xFF});
-            #end
-            rainDrop.visible = false; //Make sure the particle doesn't show up at (0, 0)
-            rainEmitter.add(rainDrop);
-        }
-        #if (cpp || neko)
-        var myAtlas = createAtlas("particles", 128, 128);
-        rainEmitter.atlas = myAtlas;
-        #end
-		rainEmitter.start(false, 10, .1);
-        */  
 	}
 	
 	override public function destroy():Void {
