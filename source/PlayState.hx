@@ -8,6 +8,10 @@ import org.flixel.FlxState;
 import org.flixel.FlxText;
 import org.flixel.FlxTilemap;
 import org.flixel.FlxU;
+/* IMPORTS FOR RAIN PURPOSES
+import org.flixel.FlxEmitter;
+import org.flixel.FlxParticle;
+*/
 import org.flixel.plugin.photonstorm.FlxBar;
 import org.flixel.plugin.photonstorm.FlxControl;
 import org.flixel.plugin.photonstorm.FlxControlHandler;
@@ -30,7 +34,32 @@ class PlayState extends FlxState
 		FlxControl.player1.setStandardSpeed(250, false);
 		FlxControl.player1.setFireButton("SPACE", FlxControlHandler.KEYMODE_PRESSED, 250, Registry.player.gun.fire);
 
-		
+		/* DESCOMENTAR IMPORTS DE RAIN
+		var rainEmitter:FlxEmitter = new FlxEmitter(0, 0, 200);
+	    rainEmitter.setSize(FlxG.width, 0);
+	    rainEmitter.setXSpeed(5, 5);
+	    rainEmitter.setYSpeed(50, 50);
+	    rainEmitter.setRotation(0, 0);
+	    add(rainEmitter);
+	    var rainDrop:FlxParticle;
+        for (i in 0...rainEmitter.maxSize) 
+        {
+            rainDrop = new FlxParticle();
+            #if !neko
+            rainDrop.makeGraphic(2, 6, 0xFFFFFFFF);
+            #else
+            rainDrop.makeGraphic(2, 2, {rgb: 0xFFFFFF, a: 0xFF});
+            #end
+            rainDrop.visible = false; //Make sure the particle doesn't show up at (0, 0)
+            rainEmitter.add(rainDrop);
+        }
+        #if (cpp || neko)
+        var myAtlas = createAtlas("particles", 128, 128);
+        rainEmitter.atlas = myAtlas;
+        #end
+		rainEmitter.start(false, 10, .1);
+        */  
+        
 		// Generate Cave
 		Registry.cave = new Cave("assets/data/tile.png", 32, 32);
 		var zombies = new ZombieManager(5);

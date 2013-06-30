@@ -67,8 +67,7 @@ class ZombieManager extends FlxGroup {
  
         enemy.hurt(1);
  
-        //Registry.fx.explodeBlock(Std.int(enemy.x+enemy.width*.5), Std.int(enemy.y+enemy.height));
- 
+        
         FlxG.score += 1;
     }
 
