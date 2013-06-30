@@ -16,6 +16,7 @@ class Zombie extends FlxSprite {
     var targ:FlxSprite;
     var playerPath:FlxPath;
     var healthBar: FlxBar;
+    var dead: Bool;
 
 	public function new() {
         super(0, 0);
@@ -59,9 +60,8 @@ class Zombie extends FlxSprite {
     }
 
     override public function kill(){
+        this.dead = true;
         this.play("kill");
-
-        super.kill();
     }
 
  	public function launch():Void { 
@@ -116,6 +116,16 @@ class Zombie extends FlxSprite {
             this.kill();
         }
 
+        if (this.dead) {
+            if (this._curFrame == 4) {
+                super.kill();
+            } else {
+                this.play("kill");
+            }
+
+            return;
+        }
+
         if (!this.flickering) {
             if (this.facing == FlxObject.LEFT) { 
                 this.play("left"); 
@@ -136,6 +146,7 @@ class Zombie extends FlxSprite {
             this.velocity.x = 0;
             this.velocity.y = 0;
         }
+
     }
 
 }
