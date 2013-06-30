@@ -2,12 +2,8 @@ package ;
 
 import org.flixel.FlxG;
 import org.flixel.FlxSprite;
-<<<<<<< HEAD
 import org.flixel.plugin.photonstorm.FlxCollision;
-
-=======
 import org.flixel.FlxObject;
->>>>>>> fce24a95faae3b7b472c80064924b7bc67325b0d
 
 class Zombie extends FlxSprite {
 	public var speed:Int = 100;
