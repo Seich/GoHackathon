@@ -4,12 +4,7 @@ import org.flixel.FlxG;
 import org.flixel.FlxObject;
 import org.flixel.FlxSprite;
 import org.flixel.plugin.photonstorm.FlxCollision;
-<<<<<<< HEAD
 import org.flixel.plugin.photonstorm.FlxMath;
-
-class Zombie extends FlxSprite {
-	public var speed:Int;
-=======
 import org.flixel.FlxPoint;
 import org.flixel.FlxPath;
 import org.flixel.plugin.photonstorm.FlxBar;
@@ -17,7 +12,6 @@ import org.flixel.FlxTimer;
 
 
 class Zombie extends FlxSprite {
->>>>>>> acb83efd92d1ddec2601e5aa698f10a22a22ef02
     private var targ:FlxSprite;
     private var playerPath:FlxPath;
     private var healthBar: FlxBar;
