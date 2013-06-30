@@ -8,21 +8,12 @@ import org.flixel.FlxState;
 import org.flixel.FlxText;
 import org.flixel.FlxTilemap;
 import org.flixel.FlxU;
-<<<<<<< HEAD
-
-/* IMPORTS FOR RAIN PURPOSES
-import org.flixel.FlxEmitter;
-import org.flixel.FlxParticle;
-*/
-
-=======
 import org.flixel.FlxPath;
 import org.flixel.FlxPoint;
 import org.flixel.FlxObject;
 /*
 import org.flixel.FlxEmitter;
 import org.flixel.FlxParticle;*/
->>>>>>> acb83efd92d1ddec2601e5aa698f10a22a22ef02
 import org.flixel.plugin.photonstorm.FlxBar;
 import org.flixel.plugin.photonstorm.FlxControl;
 import org.flixel.plugin.photonstorm.FlxControlHandler;

@@ -21,12 +21,16 @@ import org.flixel.FlxPoint;
 
 class MenuState extends FlxState
 {
+	var title:FlxSprite;
+	var glitch:FlxSprite;
+
+
 	override public function create():Void
 	{
 		#if !neko
 			FlxG.bgColor = 0x15644405;
 		#else
-			FlxG.camera.bgColor = {rgb: 0x131c1b, a: 0xff};
+			FlxG.camera.bgColor = {rgb: 0x15644405, a: 0xff};
 		#end		
 
 		#if !FLX_NO_MOUSE
@@ -38,33 +42,32 @@ class MenuState extends FlxState
 			FlxG.addPlugin(new FlxMouseControl());
 		}
 
-		FlxG.camera.zoom = 1;
+		var grassTop = new FlxSprite(0, 0, "assets/data/hojas.png");
+		grassTop.scale = new FlxPoint(1.3, 1.3);
 
-		var background1 = new FlxSprite(0, 0, "assets/data/bg.png");
+		var grassBot = new FlxSprite(0, 0, "assets/data/hojasb.png");
+		grassBot.scale = new FlxPoint(1.3, 1.3);
+		grassBot.y = FlxG.height - grassBot.height;
 
-		var background2 = new FlxSprite(0, 0, "assets/data/fg-1.png");
-		var background3 = new FlxSprite(0, 0, "assets/data/fg-2.png");
+		title = new FlxSprite(0, 0, "assets/data/title.png");
+		title.scale = new FlxPoint(0.9, 0.9);
+		title.x = (Lib.current.stage.width - title.width) / 2;
+		title.y = -100;
 
-		var title = new FlxSprite(0, 0, "assets/data/title.png");
-		title.scrollFactor = new FlxPoint(0, 0);
-		title.x = (FlxG.width - title.width) / 2;
-		title.y += 100;
+		var board = new FlxSprite(0, 0, "assets/data/tablita.png");
+		board.x = FlxG.width - board.width;
+		board.y = FlxG.height - board.height;
 
-		var glitch = new FlxSprite(0, 0, "assets/data/glitch.png");
-		glitch.scrollFactor = new FlxPoint(0, 0);
+		glitch = new FlxSprite(0, 0, "assets/data/glitch.png");
+		glitch.x = -100;
+		glitch.y = FlxG.height - glitch.height;
 
-		var menu = new FlxSprite(0, 0, "assets/data/bg2.png");
-		menu.scrollFactor = new FlxPoint(0, 0);
-		menu.x = FlxG.width - menu.width;
-		menu.y = FlxG.height - menu.height;
 
-		add(background1);
-		//add(foreground1);
-		//add(foreground2);
-		add(title);
+		add(grassTop);
+		add(grassBot);
 		add(glitch);
-		add(menu);
-
+		add(title);
+		add(board);
 	}
 	
 	override public function destroy():Void
@@ -74,6 +77,14 @@ class MenuState extends FlxState
 
 	override public function update():Void
 	{
+		if (title.y < 50) {
+			title.y += 10;
+		}
+
+		if (glitch.x < 0) {
+			glitch.x += 10;
+		}
+
 		super.update();
 	}	
 

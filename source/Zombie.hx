@@ -4,18 +4,13 @@ import org.flixel.FlxG;
 import org.flixel.FlxObject;
 import org.flixel.FlxSprite;
 import org.flixel.plugin.photonstorm.FlxCollision;
-<<<<<<< HEAD
 import org.flixel.plugin.photonstorm.FlxMath;
-
-class Zombie extends FlxSprite {
-	public var speed:Int;
-=======
 import org.flixel.FlxPoint;
 import org.flixel.FlxPath;
 import org.flixel.plugin.photonstorm.FlxBar;
 
 class Zombie extends FlxSprite {
->>>>>>> acb83efd92d1ddec2601e5aa698f10a22a22ef02
+	public var speed:Int;
     private var targ:FlxSprite;
     private var playerPath:FlxPath;
     private var healthBar: FlxBar;
@@ -28,15 +23,9 @@ class Zombie extends FlxSprite {
         this.addAnimation("right", [8, 11], 6, false);
         this.addAnimation("left", [12, 15], 6, false);
         this.addAnimation("kill",[16,19], 9, false);
-        this.addAnimation();
         this.play("down");
-
-<<<<<<< HEAD
         this.speed = FlxMath.rand(50, 75);
 
-        //this.canMove();
-=======
->>>>>>> acb83efd92d1ddec2601e5aa698f10a22a22ef02
         exists = false;
         this.health = 4;
 
@@ -92,7 +81,7 @@ class Zombie extends FlxSprite {
             this.velocity.x = speed;
             this.facing = FlxObject.RIGHT;
         }
-        
+
         if (distY > 0) {
             this.velocity.y = -speed;
             this.facing = FlxObject.UP;
