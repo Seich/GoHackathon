@@ -50,7 +50,6 @@ class Player extends FlxSprite
 	{
 		super.update();
 		FlxG.camera.follow(this);
-		FlxG.camera.followAdjust(0.5, 0.5);
 
 		if (FlxG.keys.UP) {
 			gun.setBulletDirection(FlxWeapon.BULLET_UP, bullet_speed); 
