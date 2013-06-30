@@ -1,0 +1,119 @@
+package ;
+
+import nme.Lib;
+import org.flixel.FlxG;
+import org.flixel.FlxObject;
+import org.flixel.FlxGroup;
+import org.flixel.FlxPoint;
+import org.flixel.FlxSprite;
+import org.flixel.system.input.FlxTouch;
+import org.flixel.system.input.FlxTouchManager;
+
+class Controller extends FlxGroup
+{
+	var touchManager: FlxTouchManager;
+	var up: FlxSprite;
+	var down: FlxSprite;
+	var left: FlxSprite;
+	var right: FlxSprite;
+
+	var fire: FlxSprite;
+
+	public function new()
+	{
+		super();
+
+		touchManager = new FlxTouchManager();
+
+		var offset = 10;
+		var size = 44;
+
+		up = new FlxSprite();
+		up.loadGraphic("assets/data/button_up.png", false, false, size, size);
+		up.scrollFactor = new FlxPoint(0, 0);
+		up.x = (size * 2);
+		up.y = (FlxG.height - (up.height * 2)) - offset;
+		up.frame = 1;
+
+		down = new FlxSprite();
+		down.loadGraphic("assets/data/button_down.png", false, false, size, size);
+		down.scrollFactor = new FlxPoint(0, 0);
+		down.x = (size * 2);
+		down.y = (FlxG.height - down.height) - 10;
+		down.frame = 1;
+
+		left = new FlxSprite();
+		left.loadGraphic("assets/data/button_left.png", false, false, size, size);
+		left.scrollFactor = new FlxPoint(0, 0);
+		left.x = (size * 1);
+		left.y = (FlxG.height - left.height) - 10;
+		left.frame = 1;
+
+		right = new FlxSprite();
+		right.loadGraphic("assets/data/button_right.png", false, false, size, size);
+		right.scrollFactor = new FlxPoint(0, 0);
+		right.x = (size * 3);
+		right.y = (FlxG.height - right.height) - 10;
+		right.frame = 1;
+
+		fire = new FlxSprite();
+		fire.loadGraphic("assets/data/button_a.png", false, false, size, size);
+		fire.scrollFactor = new FlxPoint(0, 0);
+		fire.x =  FlxG.width - (size + offset);
+		fire.y = (FlxG.height - fire.height) - 10;
+		fire.frame = 1;
+
+		add(up);
+		add(down);
+		add(left);
+		add(right);
+		add(fire);
+
+		this.setAll("alpha" , 0.7);
+	}
+
+	override public function update(): Void
+	{
+		#if (ios || android)
+	    	touchInput();
+	    #end
+	}
+
+	private function touchInput():Void
+	{
+	    var touches:Array<FlxTouch> = touchManager.touches;
+	    var touch:FlxTouch;
+	 
+	    for(touch in touches)
+	    {
+	        if (touch.pressed())
+	        {
+	            // get touch position (relative to screen)
+	            var px:Int = touch.screenX;
+	            var py:Int = touch.screenY;
+
+	            if (up.overlapsPoint(new FlxPoint(px, py))) {
+	            	up.frame = 2;
+	            }
+
+	            if (down.overlapsPoint(new FlxPoint(px, py))) {
+	            	down.frame = 2;
+	            }
+
+	            if (left.overlapsPoint(new FlxPoint(px, py))) {
+	            	left.frame = 2;
+	            }
+
+	            if (right.overlapsPoint(new FlxPoint(px, py))) {
+	            	right.frame = 2;
+	            }
+
+	            if (fire.overlapsPoint(new FlxPoint(px, py))) {
+	            	fire.frame = 2;
+	            }
+	        } else {
+	        	this.setAll("frame", 1);
+	        }
+	    }
+	}
+}

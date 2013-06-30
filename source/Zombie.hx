@@ -16,6 +16,7 @@ class Zombie extends FlxSprite {
     private var targ:FlxSprite;
     private var playerPath:FlxPath;
     private var healthBar: FlxBar;
+    
 	public function new() {
         super(0, 0);
         this.loadGraphic("assets/data/zombie1.png", true, false, 60, 60);
