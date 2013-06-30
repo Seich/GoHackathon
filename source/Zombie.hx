@@ -4,13 +4,14 @@ import org.flixel.FlxG;
 import org.flixel.FlxObject;
 import org.flixel.FlxSprite;
 import org.flixel.plugin.photonstorm.FlxCollision;
+import org.flixel.FlxPoint;
+import org.flixel.FlxPath;
 
 class Zombie extends FlxSprite {
-	public var speed:Int = 100;
     private var targ:FlxSprite;
+    private var playerPath:FlxPath;
 
-	public function new()
-    {
+	public function new() {
         super(0, 0);
         this.loadGraphic("assets/data/zombie1.png", true, false, 60, 60);
         this.addAnimation("down", [0, 3], 6, false);
@@ -19,48 +20,55 @@ class Zombie extends FlxSprite {
         this.addAnimation("left", [12, 15], 6, false);
         this.play("down");
 
-        //this.canMove();
         exists = false;
     }
 
- 	public function launch(bx:Int, by:Int):Void
-    {
+ 	public function launch(bx:Int, by:Int):Void {
         x = bx;
         y = by;   
         exists = true;
         targ = Registry.player;
     }
- 
-    public function canMove()
-    {
-        FlxG.log(Registry.level.overlaps(this));
+
+    public function getPath() {
+        if (playerPath != null) {
+
+            this.stopFollowingPath(true);
+        }
+
+        var pathStart:FlxPoint = new FlxPoint(this.x + this.width / 2, this.y + this.height / 2);
+        var pathEnd:FlxPoint = new FlxPoint(Registry.player.x,Registry.player.y);
+        playerPath = Registry.level.findPath(pathStart, pathEnd);
+         
+        if (playerPath != null) {
+            this.followPath(playerPath);     
+        }
+        if (this.pathSpeed == 0) {
+            this.velocity.x = 0;
+            this.velocity.y = 0;
+        }              
     }
- 
-    override public function update():Void
-    {
+
+    override public function update():Void {
         super.update();
 
         var distX:Float = this.x - targ.x;
         var distY:Float = this.y - targ.y;
         
-
-        if (distY > 0) {
-            this.velocity.y = -50;
-            this.facing = FlxObject.UP;
-        } else {
-            this.velocity.y = 50;
-            this.facing = FlxObject.DOWN;
-        }
-
         if (distX > 0) {
-            this.velocity.x = -50;
             this.facing = FlxObject.LEFT;
         } else {
-            this.velocity.x = 50;
             this.facing = FlxObject.RIGHT;
         }
 
-        if (exists && this.health == 0 ){
+        if (distY > 0) {
+            this.facing = FlxObject.UP;
+        } else {
+            this.facing = FlxObject.DOWN;
+        }
+
+
+        if (exists && this.health <= 0 ){
             exists = false;
         }
 

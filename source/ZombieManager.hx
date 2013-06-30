@@ -9,11 +9,11 @@ import org.flixel.plugin.photonstorm.FlxMath;
 
 class ZombieManager extends FlxGroup {
 	private var lastReleased:Int;
-	private var releaseRate:Int;
+	public var releaseRate:Int;
 
-	public function new(poolSize:Int) {
+	public function new(poolSize:Int , rRate:Int) {
 		super();
-		releaseRate = 500;
+		releaseRate = rRate;
 		var i = 0;
 		while(i < poolSize) {
 			var enemy = new Zombie();

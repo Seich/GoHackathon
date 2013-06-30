@@ -8,11 +8,11 @@ import org.flixel.FlxState;
 import org.flixel.FlxText;
 import org.flixel.FlxTilemap;
 import org.flixel.FlxU;
-
+import org.flixel.FlxPath;
+import org.flixel.FlxPoint;
 /*
 import org.flixel.FlxEmitter;
-import org.flixel.FlxParticle;
-*/
+import org.flixel.FlxParticle;*/
 import org.flixel.plugin.photonstorm.FlxBar;
 import org.flixel.plugin.photonstorm.FlxControl;
 import org.flixel.plugin.photonstorm.FlxControlHandler;
@@ -37,7 +37,17 @@ class PlayState extends FlxState
 		
 		FlxControl.create(Registry.player, FlxControlHandler.MOVEMENT_INSTANT, FlxControlHandler.STOPPING_INSTANT);
 		FlxControl.player1.setStandardSpeed(250, false);
+
 		FlxControl.player1.setFireButton("SPACE", FlxControlHandler.KEYMODE_PRESSED, 250, Registry.player.gun.fire);
+
+		
+        
+
+		Registry.zombies = new ZombieManager(5,5000);
+
+		add(Registry.level);
+		add(Registry.player);
+		add(Registry.zombies);
 
 		/*
 		var rainEmitter:FlxEmitter = new FlxEmitter(0, 0, 200);
@@ -62,27 +72,20 @@ class PlayState extends FlxState
         var myAtlas = createAtlas("particles", 128, 128);
         rainEmitter.atlas = myAtlas;
         #end
-		rainEmitter.start(false, 10, .1);
-        */
-
-		Registry.zombies = new ZombieManager(5);
-
-		add(Registry.level);
-		add(Registry.player);
-		add(Registry.zombies);
+		rainEmitter.start(false, 10, .1);*/
 	}
 	
-	override public function destroy():Void
-	{
+	override public function destroy():Void {
 		FlxControl.clear();
 		super.destroy();
 	}
 
-	override public function update():Void
-	{	
+	override public function update():Void {	
 		super.update();
 		FlxG.collide(Registry.zombies, Registry.level);
 		FlxG.collide(Registry.player, Registry.level);
 		Registry.level.follow();
+		Registry.zombies.callAll("getPath");
+
 	}
 }

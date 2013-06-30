@@ -29,11 +29,14 @@ class Level extends FlxTilemap
 							matrix[i][j] = 8;
 						}
 					} else {
+						matrix[i][j] = temp;
+					}	
+				} else {
 						matrix[i][j] = FlxMath.rand(12,19);
-					}
 				}
 			}
-		}	
+		}
+			
 		level = FlxCaveGenerator.convertMatrixToStr(matrix);
 		
 		loadMap(level, tileset, width, height, this.auto);
@@ -47,6 +50,6 @@ class Level extends FlxTilemap
 
 
 
-		FlxG.worldBounds = new FlxRect(0, 0, this.width, this.height);
+		FlxG.worldBounds = new FlxRect(0, 0, this.width-60, this.height);
 	}
 }
