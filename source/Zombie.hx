@@ -2,11 +2,12 @@ package ;
 
 import org.flixel.FlxG;
 import org.flixel.FlxSprite;
-
+import org.flixel.FlxObject;
 
 class Zombie extends FlxSprite {
 	public var speed:Int = 100;
-    
+    private var targ:FlxSprite;
+
 	public function new()
     {
         super(0, 0);
@@ -20,13 +21,32 @@ class Zombie extends FlxSprite {
         x = bx;
         y = by;   
         exists = true;
+        targ = Registry.player;
     }
  
- 
+
     override public function update():Void
     {
         super.update();
- 
+        var distX:Float = this.x - targ.x;
+        var distY:Float = this.y - targ.y;
+        
+        if (distX > 0) {
+            this.velocity.x = -50;
+            this.facing = FlxObject.LEFT;
+        } else {
+            this.velocity.x = 50;
+            this.facing = FlxObject.RIGHT;
+        }
+        if (distY > 0) {
+            this.velocity.y = -50;
+            this.facing = FlxObject.UP;
+        } else {
+            this.velocity.y = 50;
+            this.facing = FlxObject.DOWN;
+        }
+
+
         if (exists && this.health == 0 ){
             exists = false;
         }
