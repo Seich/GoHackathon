@@ -46,6 +46,17 @@ class Player extends FlxSprite
 		FlxG.state.add(gun.group);
 	}
 
+	public function worldBound() {
+		if(this.x < Registry.level.x)
+			this.x = Registry.level.x;
+		if(this.x + this.width > Registry.level.x + Registry.level.width)
+			this.x = Registry.level.x + Registry.level.width - this.width;
+		if(this.y < Registry.level.y)
+			this.y = Registry.level.y;
+		if(this.y + this.height > Registry.level.y + Registry.level.height)
+			this.y = Registry.level.y + Registry.level.height - this.width;
+	}
+
 	override public function update() :Void 
 	{
 		super.update();
@@ -74,5 +85,7 @@ class Player extends FlxSprite
 		if (FlxG.keys.UP || FlxG.keys.DOWN || FlxG.keys.LEFT || FlxG.keys.RIGHT) {
 			this.play(this._dir);
 		}
+
+		this.worldBound();
 	}
 }
