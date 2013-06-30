@@ -37,8 +37,10 @@ class PlayState extends FlxState
 		cave = new Cave("assets/data/tile.png", 32, 32);
 
 
-		add(cave);
+		var zombies = new ZombieManager(5);
+		add(zombies);
 		add(player);
+		add(cave);
 	}
 	
 	override public function destroy():Void

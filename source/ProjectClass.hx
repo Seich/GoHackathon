@@ -2,6 +2,7 @@ package;
 
 import nme.Lib;
 import org.flixel.FlxGame;
+import org.flixel.FlxG;
 	
 class ProjectClass extends FlxGame
 {	
@@ -13,5 +14,6 @@ class ProjectClass extends FlxGame
 		var ratioY:Float = stageHeight / 480;
 		var ratio:Float = Math.min(ratioX, ratioY);
 		super(Math.ceil(stageWidth / ratio), Math.ceil(stageHeight / ratio), MenuState, ratio, 30, 30);
+		FlxG.debug = true;
 	}
 }
