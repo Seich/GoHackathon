@@ -28,6 +28,8 @@ class PlayState extends FlxState
 			FlxG.addPlugin(new FlxControl());
 		}
 
+		// Generate Cave
+		Registry.level = new Level("assets/data/scene.png", 60, 60);
 
 		// create Player		
 		Registry.player = new Player();
@@ -64,8 +66,6 @@ class PlayState extends FlxState
 		rainEmitter.start(false, 10, .1);
         */  
 
-		// Generate Cave
-		Registry.level = new Level("assets/data/scene.png", 100, 100);
 		var zombies = new ZombieManager(5);
 
 		add(zombies);
