@@ -8,10 +8,12 @@ import org.flixel.FlxState;
 import org.flixel.FlxText;
 import org.flixel.FlxTilemap;
 import org.flixel.FlxU;
+
 /* IMPORTS FOR RAIN PURPOSES
 import org.flixel.FlxEmitter;
 import org.flixel.FlxParticle;
 */
+
 import org.flixel.plugin.photonstorm.FlxBar;
 import org.flixel.plugin.photonstorm.FlxControl;
 import org.flixel.plugin.photonstorm.FlxControlHandler;
@@ -26,6 +28,9 @@ class PlayState extends FlxState
 			FlxG.addPlugin(new FlxControl());
 		}
 
+		// Generate Cave
+		Registry.level = new Level("assets/data/tile.png", 32, 32);
+
 		// create Player		
 		Registry.player = new Player();
 		
@@ -34,6 +39,7 @@ class PlayState extends FlxState
 		FlxControl.create(Registry.player, FlxControlHandler.MOVEMENT_INSTANT, FlxControlHandler.STOPPING_INSTANT);
 		FlxControl.player1.setStandardSpeed(250, false);
 		FlxControl.player1.setFireButton("SPACE", FlxControlHandler.KEYMODE_PRESSED, 250, Registry.player.gun.fire);
+
 		/* DESCOMENTAR IMPORTS DE RAIN
 		var rainEmitter:FlxEmitter = new FlxEmitter(0, 0, 200);
 	    rainEmitter.setSize(FlxG.width, 0);
@@ -79,5 +85,6 @@ class PlayState extends FlxState
 	{	
 		super.update();
 		FlxG.collide(Registry.player, Registry.level);
+		Registry.level.follow();
 	}
 }
