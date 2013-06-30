@@ -13,6 +13,7 @@ class Player extends FlxSprite
 {
 	var healthBar: FlxBar;
 	var bullet_speed = 500;
+	var _dir: String;
 	public var gun: FlxWeapon;
 
 	public function new()
@@ -38,7 +39,7 @@ class Player extends FlxSprite
 
 
 		gun = new FlxWeapon("gun", this);
-		gun.makeImageBullet(50, "assets/data/cursor.png");
+		gun.makeImageBullet(50, "assets/data/bullet.png", 100);
 
 		FlxG.state.add(gun.group);
 	}
@@ -50,27 +51,24 @@ class Player extends FlxSprite
 
 		if (FlxG.keys.UP) {
 			gun.setBulletDirection(FlxWeapon.BULLET_UP, bullet_speed); 
-			this.facing = FlxObject.UP;
-			this.play("up");
-		}
-
-		if (FlxG.keys.LEFT) {
-		 	gun.setBulletDirection(FlxWeapon.BULLET_LEFT, bullet_speed); 
-			this.facing = FlxObject.LEFT;
-			this.play("left");
+			this._dir = "up";
 		}
 
 		if (FlxG.keys.DOWN) {
 			gun.setBulletDirection(FlxWeapon.BULLET_DOWN, bullet_speed); 
-			this.facing = FlxObject.DOWN;
-			this.play("down");
+			this._dir = "down"; 
+		}
+
+		if (FlxG.keys.LEFT) {
+		 	gun.setBulletDirection(FlxWeapon.BULLET_LEFT, bullet_speed); 
+			this._dir = "left";  
 		}
 
 		if (FlxG.keys.RIGHT) {
 			gun.setBulletDirection(FlxWeapon.BULLET_RIGHT, bullet_speed); 
-			this.facing = FlxObject.RIGHT;
-			this.play("right");
+			this._dir = "right"; 
 		}
 
+		this.play(this._dir);
 	}
 }

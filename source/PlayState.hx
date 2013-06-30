@@ -29,14 +29,13 @@ class PlayState extends FlxState
 		FlxControl.create(Registry.player, FlxControlHandler.MOVEMENT_INSTANT, FlxControlHandler.STOPPING_INSTANT);
 		FlxControl.player1.setStandardSpeed(250, false);
 		FlxControl.player1.setFireButton("SPACE", FlxControlHandler.KEYMODE_PRESSED, 250, Registry.player.gun.fire);
-
 		
 		// Generate Cave
-		Registry.cave = new Cave("assets/data/tile.png", 32, 32);
+		Registry.level = new Level("assets/data/tile.png", 32, 32);
 		var zombies = new ZombieManager(5);
-		add(zombies);
 
-		add(Registry.cave);
+		add(zombies);
+		add(Registry.level);
 		add(Registry.player);
 	}
 	
@@ -49,6 +48,6 @@ class PlayState extends FlxState
 	override public function update():Void
 	{	
 		super.update();
-		FlxG.collide(Registry.player, Registry.cave);
+		FlxG.collide(Registry.player, Registry.level);
 	}
 }
