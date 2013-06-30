@@ -21,7 +21,7 @@ class Player extends FlxSprite
 	{
 		super();
 
-		this.loadGraphic("assets/data/zombie1.png", true, false, 60, 60);
+		this.loadGraphic("assets/data/gatos1.png", true, false, 60, 60);
 		this.addAnimation("down", [0, 3], 6, false);
 		this.addAnimation("up", [4, 7], 6, false);
 		this.addAnimation("right", [8, 11], 6, false);

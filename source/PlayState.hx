@@ -39,7 +39,6 @@ class PlayState extends FlxState
 		FlxControl.create(Registry.player, FlxControlHandler.MOVEMENT_INSTANT, FlxControlHandler.STOPPING_INSTANT);
 		FlxControl.player1.setStandardSpeed(250, false);
 		FlxControl.player1.setFireButton("SPACE", FlxControlHandler.KEYMODE_PRESSED, 250, Registry.player.gun.fire);
-
 		/* DESCOMENTAR IMPORTS DE RAIN
 		var rainEmitter:FlxEmitter = new FlxEmitter(0, 0, 200);
 	    rainEmitter.setSize(FlxG.width, 0);
