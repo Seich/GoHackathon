@@ -11,9 +11,6 @@ import org.flixel.FlxU;
 import org.flixel.FlxPath;
 import org.flixel.FlxPoint;
 import org.flixel.FlxObject;
-/*
-import org.flixel.FlxEmitter;
-import org.flixel.FlxParticle;*/
 import org.flixel.plugin.photonstorm.FlxBar;
 import org.flixel.plugin.photonstorm.FlxControl;
 import org.flixel.plugin.photonstorm.FlxControlHandler;
@@ -33,7 +30,7 @@ class PlayState extends FlxState
 
 		// create Player		
 		Registry.player = new Player();
-		
+
 		// Zombehs!		
 		Registry.zombies = new ZombieManager(30, 5000);
 

@@ -9,5 +9,5 @@ class Hud extends FlxGroup
 	public function new()
 	{
 		this._score = 0;
-	}
+	} 
 }

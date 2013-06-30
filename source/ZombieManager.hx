@@ -45,9 +45,10 @@ class ZombieManager extends FlxGroup {
 	            	var coord = FlxMath.rand(0,3);
 	            	launchX = Math.floor(arrayX[coord]);
 	            	launchY = Math.floor(arrayY[coord]);
-            	} while(false);
 
-				enemy.launch(launchX, launchY);
+            	} while(enemy.isOverlaped(launchX,launchY));
+
+				enemy.launch();
 			}
         }
 	}
