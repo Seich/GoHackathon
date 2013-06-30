@@ -20,7 +20,10 @@ class Player extends FlxSprite
 		super();
 
 		this.loadGraphic("assets/data/zombie1.png", true, false, 60, 60);
-		this.addAnimation("down", [0, 3], 6);
+		this.addAnimation("down", [0, 3], 6, false);
+		this.addAnimation("up", [4, 7], 6, false);
+		this.addAnimation("right", [8, 11], 6, false);
+		this.addAnimation("left", [12, 15], 6, false);
 		this.play("down");
 
 		health = 50;
@@ -48,21 +51,25 @@ class Player extends FlxSprite
 		if (FlxG.keys.UP) {
 			gun.setBulletDirection(FlxWeapon.BULLET_UP, bullet_speed); 
 			this.facing = FlxObject.UP;
+			this.play("up");
 		}
 
 		if (FlxG.keys.LEFT) {
 		 	gun.setBulletDirection(FlxWeapon.BULLET_LEFT, bullet_speed); 
 			this.facing = FlxObject.LEFT;
+			this.play("left");
 		}
 
 		if (FlxG.keys.DOWN) {
 			gun.setBulletDirection(FlxWeapon.BULLET_DOWN, bullet_speed); 
 			this.facing = FlxObject.DOWN;
+			this.play("down");
 		}
 
 		if (FlxG.keys.RIGHT) {
 			gun.setBulletDirection(FlxWeapon.BULLET_RIGHT, bullet_speed); 
 			this.facing = FlxObject.RIGHT;
+			this.play("down");
 		}
 
 	}
