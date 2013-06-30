@@ -16,6 +16,7 @@ class Zombie extends FlxSprite {
     private var targ:FlxSprite;
     private var playerPath:FlxPath;
     private var healthBar: FlxBar;
+
 	public function new() {
         super(0, 0);
         this.loadGraphic("assets/data/zombie1.png", true, false, 60, 60);
@@ -37,23 +38,25 @@ class Zombie extends FlxSprite {
         FlxG.state.add(healthBar);
     }
 
+    public function isOverlaped(bx:Int , by:Int){
+        x = bx;
+        y = by;
+        return Registry.level.overlaps( this );
+    }
+
     override public function hurt(dmg: Float) {
         this.play("hit");
-        var tiempo = new FlxTimer();
-        tiempo.start(5000);
+        
         super.hurt(dmg);
     }
 
     override public function kill(){
         this.play("kill");
-        var tiempo = new FlxTimer();
-        tiempo.start(6000);
+
         super.kill();
     }
 
- 	public function launch(bx:Int, by:Int):Void {
-        x = bx;
-        y = by;   
+ 	public function launch():Void { 
         exists = true;
         targ = Registry.player;
     }
@@ -82,18 +85,19 @@ class Zombie extends FlxSprite {
         var distX:Float = this.x - targ.x;
         var distY:Float = this.y - targ.y;
         
-        if (distX > distY) {
-            if (distX > 0) {
-                this.facing = FlxObject.LEFT;
-            } else {
-                this.facing = FlxObject.RIGHT;
-            }
+        if (distX > 0) {
+            this.velocity.x = -50;
+            this.facing = FlxObject.LEFT;
         } else {
-            if (distY > 0) {
-                this.facing = FlxObject.UP;
-            } else {
-                this.facing = FlxObject.DOWN;
-            }
+            this.velocity.x = 50;
+            this.facing = FlxObject.RIGHT;
+        }
+        if (distY > 0) {
+            this.velocity.y = -50;
+            this.facing = FlxObject.UP;
+        } else {
+            this.velocity.y = 50;
+            this.facing = FlxObject.DOWN;
         }
 
 
