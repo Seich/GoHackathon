@@ -8,6 +8,7 @@ import org.flixel.FlxPoint;
 import org.flixel.FlxSprite;
 import org.flixel.system.input.FlxTouch;
 import org.flixel.system.input.FlxTouchManager;
+import org.flixel.plugin.photonstorm.FlxWeapon;
 
 class Controller extends FlxGroup
 {
@@ -94,25 +95,41 @@ class Controller extends FlxGroup
 
 	            if (up.overlapsPoint(new FlxPoint(px, py))) {
 	            	up.frame = 2;
+	            	Registry.player.velocity.y = -80;
+	            	Registry.player._dir = "up";
+	            	Registry.player.gun.setBulletDirection(FlxWeapon.BULLET_UP, Registry.player.bullet_speed);
 	            }
 
 	            if (down.overlapsPoint(new FlxPoint(px, py))) {
 	            	down.frame = 2;
+	            	Registry.player.velocity.y = 80;
+	            	Registry.player._dir = "down";
+	            	Registry.player.gun.setBulletDirection(FlxWeapon.BULLET_DOWN, Registry.player.bullet_speed);
 	            }
 
 	            if (left.overlapsPoint(new FlxPoint(px, py))) {
 	            	left.frame = 2;
+	            	Registry.player.velocity.x = -80;
+	            	Registry.player._dir = "left";
+	            	Registry.player.gun.setBulletDirection(FlxWeapon.BULLET_LEFT, Registry.player.bullet_speed);
 	            }
 
 	            if (right.overlapsPoint(new FlxPoint(px, py))) {
 	            	right.frame = 2;
+	            	Registry.player.velocity.x = 80;
+	            	Registry.player._dir = "right";
+	            	Registry.player.gun.setBulletDirection(FlxWeapon.BULLET_RIGHT, Registry.player.bullet_speed);
 	            }
 
 	            if (fire.overlapsPoint(new FlxPoint(px, py))) {
 	            	fire.frame = 2;
+	            	Registry.player.gun.fire();
 	            }
+	            Registry.player._touch = true;
 	        } else {
 	        	this.setAll("frame", 1);
+	        	Registry.player.velocity = new FlxPoint(0, 0);
+	            Registry.player._touch = false;
 	        }
 	    }
 	}

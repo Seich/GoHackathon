@@ -13,9 +13,10 @@ import org.flixel.plugin.photonstorm.FlxWeapon;
 class Player extends FlxSprite
 {
 	var healthBar: FlxBar;
-	var bullet_speed = 500;
-	var _dir: String;
+	public var bullet_speed:Int = 500;
+	public var _dir: String;
 	public var gun: FlxWeapon;
+	public var _touch: Bool;
 
 	public function new()
 	{
@@ -80,9 +81,14 @@ class Player extends FlxSprite
 			this._dir = "right"; 
 		}
 
-		if (FlxG.keys.UP || FlxG.keys.DOWN || FlxG.keys.LEFT || FlxG.keys.RIGHT) {
-			this.play(this._dir);
-		}
-
+		#if (ios || android)
+			if (this._touch) {
+				this.play(this._dir);
+			}
+		#else
+			if (FlxG.keys.UP || FlxG.keys.DOWN || FlxG.keys.LEFT || FlxG.keys.RIGHT) {
+				this.play(this._dir);
+			}
+		#end
 	}
 }

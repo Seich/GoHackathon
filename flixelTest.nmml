@@ -4,6 +4,7 @@
 	
 	<window width="640" height="480" fps="30" orientation="portrait" resizable="true" if="web" />
 	<window width="640" height="480" fps="30" orientation="landscape" fullscreen="false" unless="web" />
+	<window width="800" height="480" fps="60" orientation="landscape" fullscreen="true" hardware="true" vsync="true" borderless="true" if="android" />​
  	
 	<set name="BUILD_DIR" value="export" />
 	

@@ -28,20 +28,23 @@ class PlayState extends FlxState
 			FlxG.addPlugin(new FlxControl());
 		}
 
-		Registry.controller = new Controller();
-
 		// Generate Cave
 		Registry.level = new Level("assets/data/scene.png", 60, 60);
 
 		// create Player		
 		Registry.player = new Player();
 		
-		// Create player controls
-		FlxControl.create(Registry.player, FlxControlHandler.MOVEMENT_INSTANT, FlxControlHandler.STOPPING_INSTANT);
-		FlxControl.player1.setStandardSpeed(250, false);
-		FlxControl.player1.setFireButton("SPACE", FlxControlHandler.KEYMODE_PRESSED, 250, Registry.player.gun.fire);
-
+		// Zombehs!		
 		Registry.zombies = new ZombieManager(30, 5000);
+
+		// Create player controls
+		#if (ios || android)
+			Registry.controller = new Controller();
+		#else
+			FlxControl.create(Registry.player, FlxControlHandler.MOVEMENT_INSTANT, FlxControlHandler.STOPPING_INSTANT);
+			FlxControl.player1.setStandardSpeed(250, false);
+			FlxControl.player1.setFireButton("SPACE", FlxControlHandler.KEYMODE_PRESSED, 250, Registry.player.gun.fire);
+	    #end
 
 		add(Registry.level);
 		add(Registry.player);
@@ -49,7 +52,9 @@ class PlayState extends FlxState
 		add(Registry.zombies);
 		add(Registry.player.gun.group);
 
-		add(Registry.controller);
+		#if (ios || android)
+			add(Registry.controller);
+		#end
 	}
 	
 	override public function destroy():Void {
