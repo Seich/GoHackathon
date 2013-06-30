@@ -61,7 +61,7 @@ class PlayState extends FlxState
         */  
 
 		// Generate Cave
-		Registry.level = new Level("assets/data/tile.png", 32, 32);
+		Registry.level = new Level("assets/data/scene.png", 100, 100);
 		var zombies = new ZombieManager(5);
 
 		add(zombies);
