@@ -10,6 +10,7 @@ import org.flixel.FlxTilemap;
 import org.flixel.FlxU;
 import org.flixel.FlxPath;
 import org.flixel.FlxPoint;
+import org.flixel.FlxObject;
 /*
 import org.flixel.FlxEmitter;
 import org.flixel.FlxParticle;*/
@@ -37,17 +38,17 @@ class PlayState extends FlxState
 		
 		FlxControl.create(Registry.player, FlxControlHandler.MOVEMENT_INSTANT, FlxControlHandler.STOPPING_INSTANT);
 		FlxControl.player1.setStandardSpeed(250, false);
-
 		FlxControl.player1.setFireButton("SPACE", FlxControlHandler.KEYMODE_PRESSED, 250, Registry.player.gun.fire);
 
 		
         
 
-		Registry.zombies = new ZombieManager(5,5000);
+		Registry.zombies = new ZombieManager(5, 5000);
 
 		add(Registry.level);
 		add(Registry.player);
 		add(Registry.zombies);
+		add(Registry.player.gun.group);
 
 		/*
 		var rainEmitter:FlxEmitter = new FlxEmitter(0, 0, 200);
@@ -80,12 +81,20 @@ class PlayState extends FlxState
 		super.destroy();
 	}
 
+	function bulletHitZombie(bullet:FlxObject, enemy:FlxObject):Void {
+		var zombie = cast(enemy, Zombie);
+
+		zombie.hurt(1);
+		bullet.kill();
+	}
+	
 	override public function update():Void {	
 		super.update();
 		FlxG.collide(Registry.zombies, Registry.level);
 		FlxG.collide(Registry.player, Registry.level);
 		Registry.level.follow();
 		Registry.zombies.callAll("getPath");
-
+		FlxG.overlap(Registry.player.gun.group, Registry.zombies, bulletHitZombie);
 	}
+
 }

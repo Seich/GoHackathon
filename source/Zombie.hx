@@ -6,10 +6,12 @@ import org.flixel.FlxSprite;
 import org.flixel.plugin.photonstorm.FlxCollision;
 import org.flixel.FlxPoint;
 import org.flixel.FlxPath;
+import org.flixel.plugin.photonstorm.FlxBar;
 
 class Zombie extends FlxSprite {
     private var targ:FlxSprite;
     private var playerPath:FlxPath;
+    private var healthBar: FlxBar;
 
 	public function new() {
         super(0, 0);
@@ -18,9 +20,23 @@ class Zombie extends FlxSprite {
         this.addAnimation("up", [4, 7], 6, false);
         this.addAnimation("right", [8, 11], 6, false);
         this.addAnimation("left", [12, 15], 6, false);
+        this.addAnimation("kill",[16,19], 9, false);
+        this.addAnimation();
         this.play("down");
 
         exists = false;
+        this.health = 4;
+
+        healthBar = new FlxBar(16, 64, FlxBar.FILL_LEFT_TO_RIGHT, 64, 6, this, "health", 0, 100);
+        healthBar.trackParent(-32, -10);
+
+        FlxG.state.add(healthBar);
+    }
+
+    override public function hurt(dmg: Float)
+    {
+        this.play("up");
+        super.hurt(dmg);
     }
 
  	public function launch(bx:Int, by:Int):Void {
@@ -37,7 +53,7 @@ class Zombie extends FlxSprite {
         }
 
         var pathStart:FlxPoint = new FlxPoint(this.x + this.width / 2, this.y + this.height / 2);
-        var pathEnd:FlxPoint = new FlxPoint(Registry.player.x,Registry.player.y);
+        var pathEnd:FlxPoint = new FlxPoint(Registry.player.x, Registry.player.y);
         playerPath = Registry.level.findPath(pathStart, pathEnd);
          
         if (playerPath != null) {

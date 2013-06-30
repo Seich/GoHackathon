@@ -28,7 +28,7 @@ class Player extends FlxSprite
 		this.addAnimation("left", [12, 15], 6, false);
 		this.play("down");
 
-		health = 50;
+		health = 5;
 		healthBar = new FlxBar(16, 64, FlxBar.FILL_LEFT_TO_RIGHT, 64, 6, this, "health", 0, 100);
 		healthBar.trackParent(-32, -10);
 
@@ -38,12 +38,9 @@ class Player extends FlxSprite
 		x = 50;
 		y = 50;
 
-
 		gun = new FlxWeapon("gun", this);
 		gun.makeImageBullet(50, "assets/data/bullet.png", 50, 5, true);
 		gun.bounds = new FlxRect(0, 0, Registry.level.width, Registry.level.height);
-
-		FlxG.state.add(gun.group);
 	}
 
 	public function worldBound() {
@@ -60,6 +57,7 @@ class Player extends FlxSprite
 	override public function update() :Void 
 	{
 		super.update();
+		this.worldBound();
 		FlxG.camera.follow(this);
 
 		if (FlxG.keys.UP) {
@@ -86,6 +84,5 @@ class Player extends FlxSprite
 			this.play(this._dir);
 		}
 
-		this.worldBound();
 	}
 }
