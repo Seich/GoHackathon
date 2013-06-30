@@ -1,4 +1,3 @@
-
 package ;
 
 import org.flixel.addons.FlxCaveGenerator;
@@ -32,8 +31,16 @@ class Level extends FlxTilemap
 			
 		level = FlxCaveGenerator.convertMatrixToStr(matrix);
 		
+
 		loadMap(level, tileset, width, height);
 
+		for (i in 1...12) {
+			this.setTileProperties(i, FlxObject.NONE);
+		}
+
+		for (i in 12...20) {
+			this.setTileProperties(i, FlxObject.ANY);
+		}
 
 
 		FlxG.worldBounds = new FlxRect(0, 0, this.width-60, this.height);
