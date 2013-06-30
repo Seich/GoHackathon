@@ -85,12 +85,15 @@ class MenuState extends FlxState
 			glitch.x += 10;
 		}
 
+		if (FlxG.keys.SPACE) {
+        	FlxG.switchState(new PlayState());
+		}
+
 		super.update();
 	}	
 
 	private function onStartClick( ):Void
     {
-        
         FlxG.switchState(new PlayState());
     }
 }

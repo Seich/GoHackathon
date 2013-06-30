@@ -83,27 +83,12 @@ class Zombie extends FlxSprite {
         var distX:Float = this.x - targ.x;
         var distY:Float = this.y - targ.y;
         
-<<<<<<< HEAD
-
-        if (distX > 0) {
-            this.velocity.x = -speed;
-            this.facing = FlxObject.LEFT;
-        } else {
-            this.velocity.x = speed;
-            this.facing = FlxObject.RIGHT;
-        }
-
-        if (distY > 0) {
-            this.velocity.y = -speed;
-            this.facing = FlxObject.UP;
-=======
         if (distX > distY) {
             if (distX > 0) {
                 this.facing = FlxObject.LEFT;
             } else {
                 this.facing = FlxObject.RIGHT;
             }
->>>>>>> 961df8ec2eed22ce2b3b86d4e2622aad8e54ee0c
         } else {
             if (distY > 0) {
                 this.facing = FlxObject.UP;
