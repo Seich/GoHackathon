@@ -122,6 +122,7 @@ class Player extends FlxSprite
 			this.play(this._dir);
 		}
 		if (FlxG.keys.SPACE) {
+			
 			this.play(this.isFiring);
 		}
 
