@@ -28,8 +28,6 @@ class PlayState extends FlxState
 			FlxG.addPlugin(new FlxControl());
 		}
 
-		// Generate Cave
-		Registry.level = new Level("assets/data/tile.png", 32, 32);
 
 		// create Player		
 		Registry.player = new Player();
