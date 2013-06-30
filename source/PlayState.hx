@@ -66,7 +66,7 @@ class PlayState extends FlxState
 		rainEmitter.start(false, 10, .1);
         */  
 
-		var zombies = new ZombieManager(5);
+		Registry.zombies = new ZombieManager(5);
 
 		FlxG.watch(FlxG.camera.scroll, "x");
 		FlxG.watch(FlxG.camera.scroll, "y");
@@ -75,7 +75,7 @@ class PlayState extends FlxState
 
 		add(Registry.level);
 		add(Registry.player);
-		add(zombies);
+		add(Registry.zombies);
 	}
 	
 	override public function destroy():Void
@@ -87,6 +87,7 @@ class PlayState extends FlxState
 	override public function update():Void
 	{	
 		super.update();
+		FlxG.collide(Registry.zombies, Registry.level);
 		FlxG.collide(Registry.player, Registry.level);
 		Registry.level.follow();
 	}

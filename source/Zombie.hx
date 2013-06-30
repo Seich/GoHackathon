@@ -1,13 +1,9 @@
 package ;
 
 import org.flixel.FlxG;
-import org.flixel.FlxSprite;
-<<<<<<< HEAD
-import org.flixel.plugin.photonstorm.FlxCollision;
-
-=======
 import org.flixel.FlxObject;
->>>>>>> fce24a95faae3b7b472c80064924b7bc67325b0d
+import org.flixel.FlxSprite;
+import org.flixel.plugin.photonstorm.FlxCollision;
 
 class Zombie extends FlxSprite {
 	public var speed:Int = 100;
@@ -17,8 +13,14 @@ class Zombie extends FlxSprite {
     {
         super(0, 0);
         this.loadGraphic("assets/data/zombie1.png", true, false, 60, 60);
+        this.addAnimation("down", [0, 3], 6, false);
+        this.addAnimation("up", [4, 7], 6, false);
+        this.addAnimation("right", [8, 11], 6, false);
+        this.addAnimation("left", [12, 15], 6, false);
+        this.play("down");
+
+        //this.canMove();
         exists = false;
-        this.canMove();
     }
 
  	public function launch(bx:Int, by:Int):Void
@@ -37,16 +39,11 @@ class Zombie extends FlxSprite {
     override public function update():Void
     {
         super.update();
+
         var distX:Float = this.x - targ.x;
         var distY:Float = this.y - targ.y;
         
-        if (distX > 0) {
-            this.velocity.x = -50;
-            this.facing = FlxObject.LEFT;
-        } else {
-            this.velocity.x = 50;
-            this.facing = FlxObject.RIGHT;
-        }
+
         if (distY > 0) {
             this.velocity.y = -50;
             this.facing = FlxObject.UP;
@@ -55,12 +52,23 @@ class Zombie extends FlxSprite {
             this.facing = FlxObject.DOWN;
         }
 
+        if (distX > 0) {
+            this.velocity.x = -50;
+            this.facing = FlxObject.LEFT;
+        } else {
+            this.velocity.x = 50;
+            this.facing = FlxObject.RIGHT;
+        }
 
         if (exists && this.health == 0 ){
             exists = false;
         }
+
+        if (this.facing == FlxObject.UP) { this.play("up"); }
+        else if (this.facing == FlxObject.DOWN)  { this.play("down"); } 
+        else if (this.facing == FlxObject.LEFT)  { this.play("left"); } 
+        else if (this.facing == FlxObject.RIGHT)  { this.play("right"); } 
     }
-	
 
 }
 
