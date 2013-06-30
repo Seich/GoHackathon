@@ -68,9 +68,14 @@ class PlayState extends FlxState
 
 		var zombies = new ZombieManager(5);
 
-		add(zombies);
+		FlxG.watch(FlxG.camera.scroll, "x");
+		FlxG.watch(FlxG.camera.scroll, "y");
+		FlxG.watch(FlxG.camera, "width");
+		FlxG.watch(FlxG.camera, "height");
+
 		add(Registry.level);
 		add(Registry.player);
+		add(zombies);
 	}
 	
 	override public function destroy():Void

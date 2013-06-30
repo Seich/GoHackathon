@@ -2,6 +2,7 @@ package ;
 
 import org.flixel.FlxG;
 import org.flixel.FlxSprite;
+import org.flixel.plugin.photonstorm.FlxCollision;
 
 
 class Zombie extends FlxSprite {
@@ -12,8 +13,8 @@ class Zombie extends FlxSprite {
         super(0, 0);
         this.loadGraphic("assets/data/zombie1.png", true, false, 60, 60);
         exists = false;
+        this.canMove();
     }
-
 
  	public function launch(bx:Int, by:Int):Void
     {
@@ -22,6 +23,10 @@ class Zombie extends FlxSprite {
         exists = true;
     }
  
+    public function canMove()
+    {
+        FlxG.log(Registry.level.overlaps(this));
+    }
  
     override public function update():Void
     {
