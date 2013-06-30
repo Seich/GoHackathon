@@ -1,10 +1,13 @@
 TODO
 ====
-- Shooting Zombies and hurting them
-- Zombie Health Bar
 - Zombie Spawner
-- Zombie Follow player
-- Android Joystick
-- Android
+- Shooting Zombies and hurting them
 - Tiles
+- Audio
 - Title Screen
+- Android
+- Android Joystick
+- Zombie Health Bar
+- Zombies collide with each other
+- HUD
+- Fix bullets offset

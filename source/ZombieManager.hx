@@ -33,20 +33,18 @@ class ZombieManager extends FlxGroup {
             	var launchX;
 
             	do {
-	            	arrayX[0] = FlxMath.rand(FlxG.camera.x - 64,FlxG.camera.x + FlxG.camera.width + 64);
-	            	arrayY[0] = FlxG.camera.y - 64;
+	            	arrayX[0] = FlxMath.rand(FlxG.camera.scroll.x - 64,FlxG.camera.scroll.x + FlxG.camera.width + 64);
+	            	arrayY[0] = FlxG.camera.scroll.y - 64;
 	            	arrayX[1] = arrayX[0];
-	            	arrayY[1] = FlxG.camera.y + FlxG.camera.height + 64;
-	            	arrayX[2] = Math.floor(FlxG.camera.x - 64);
-	            	arrayY[2] = FlxMath.rand(FlxG.camera.y - 64, FlxG.camera.y + FlxG.camera.height + 64);
-	            	arrayX[3] = Math.floor(FlxG.camera.x + FlxG.camera.width + 64);
+	            	arrayY[1] = FlxG.camera.scroll.y + FlxG.camera.height + 64;
+	            	arrayX[2] = Math.floor(FlxG.camera.scroll.x - 64);
+	            	arrayY[2] = FlxMath.rand(FlxG.camera.scroll.y - 64, FlxG.camera.scroll.y + FlxG.camera.height + 64);
+	            	arrayX[3] = Math.floor(FlxG.camera.scroll.x + FlxG.camera.width + 64);
 	            	arrayY[3] = arrayY[2];
 	            
 	            	var coord = FlxMath.rand(0,3);
 	            	launchX = Math.floor(arrayX[coord]);
 	            	launchY = Math.floor(arrayY[coord]);
-	            	
-	            	FlxG.log("X: " + launchX);
             	} while(false);
 
 				enemy.launch(launchX, launchY);
