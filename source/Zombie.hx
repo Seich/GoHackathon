@@ -4,9 +4,10 @@ import org.flixel.FlxG;
 import org.flixel.FlxObject;
 import org.flixel.FlxSprite;
 import org.flixel.plugin.photonstorm.FlxCollision;
+import org.flixel.plugin.photonstorm.FlxMath;
 
 class Zombie extends FlxSprite {
-	public var speed:Int = 100;
+	public var speed:Int;
     private var targ:FlxSprite;
 
 	public function new()
@@ -18,6 +19,8 @@ class Zombie extends FlxSprite {
         this.addAnimation("right", [8, 11], 6, false);
         this.addAnimation("left", [12, 15], 6, false);
         this.play("down");
+
+        this.speed = FlxMath.rand(50, 75);
 
         //this.canMove();
         exists = false;
@@ -45,18 +48,18 @@ class Zombie extends FlxSprite {
         
 
         if (distY > 0) {
-            this.velocity.y = -50;
+            this.velocity.y = -speed;
             this.facing = FlxObject.UP;
         } else {
-            this.velocity.y = 50;
+            this.velocity.y = speed;
             this.facing = FlxObject.DOWN;
         }
 
         if (distX > 0) {
-            this.velocity.x = -50;
+            this.velocity.x = -speed;
             this.facing = FlxObject.LEFT;
         } else {
-            this.velocity.x = 50;
+            this.velocity.x = speed;
             this.facing = FlxObject.RIGHT;
         }
 

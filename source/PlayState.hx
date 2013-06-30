@@ -9,10 +9,11 @@ import org.flixel.FlxText;
 import org.flixel.FlxTilemap;
 import org.flixel.FlxU;
 
-/*
+/* IMPORTS FOR RAIN PURPOSES
 import org.flixel.FlxEmitter;
 import org.flixel.FlxParticle;
 */
+
 import org.flixel.plugin.photonstorm.FlxBar;
 import org.flixel.plugin.photonstorm.FlxControl;
 import org.flixel.plugin.photonstorm.FlxControlHandler;
@@ -34,12 +35,11 @@ class PlayState extends FlxState
 		Registry.player = new Player();
 		
 		// Create player controls
-		
 		FlxControl.create(Registry.player, FlxControlHandler.MOVEMENT_INSTANT, FlxControlHandler.STOPPING_INSTANT);
 		FlxControl.player1.setStandardSpeed(250, false);
 		FlxControl.player1.setFireButton("SPACE", FlxControlHandler.KEYMODE_PRESSED, 250, Registry.player.gun.fire);
 
-		/*
+		/* DESCOMENTAR IMPORTS DE RAIN
 		var rainEmitter:FlxEmitter = new FlxEmitter(0, 0, 200);
 	    rainEmitter.setSize(FlxG.width, 0);
 	    rainEmitter.setXSpeed(5, 5);
@@ -63,9 +63,14 @@ class PlayState extends FlxState
         rainEmitter.atlas = myAtlas;
         #end
 		rainEmitter.start(false, 10, .1);
-        */
+        */  
 
 		Registry.zombies = new ZombieManager(5);
+
+		FlxG.watch(FlxG.camera.scroll, "x");
+		FlxG.watch(FlxG.camera.scroll, "y");
+		FlxG.watch(FlxG.camera, "width");
+		FlxG.watch(FlxG.camera, "height");
 
 		add(Registry.level);
 		add(Registry.player);

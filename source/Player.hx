@@ -38,7 +38,6 @@ class Player extends FlxSprite
 		x = 50;
 		y = 50;
 
-
 		gun = new FlxWeapon("gun", this);
 		gun.makeImageBullet(50, "assets/data/bullet.png", 50, 5, true);
 		gun.bounds = new FlxRect(0, 0, Registry.level.width, Registry.level.height);

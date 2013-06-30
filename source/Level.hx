@@ -15,6 +15,8 @@ class Level extends FlxTilemap
 	public function new(tileset: String, width: Int, height: Int)
 	{
 		super();
+		FlxCaveGenerator.initWallRatio = 0.5; // How much wall there is.
+
 		var matrixLength:Int = 100;
 		var matrix = new FlxCaveGenerator(matrixLength, matrixLength).generateCaveLevel();
 		for (i in 0...matrix.length) {
