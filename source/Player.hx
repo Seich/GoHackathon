@@ -69,7 +69,7 @@ class Player extends FlxSprite
 		if (FlxG.keys.RIGHT) {
 			gun.setBulletDirection(FlxWeapon.BULLET_RIGHT, bullet_speed); 
 			this.facing = FlxObject.RIGHT;
-			this.play("down");
+			this.play("right");
 		}
 
 	}
