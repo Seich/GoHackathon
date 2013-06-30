@@ -22,25 +22,36 @@ class Level extends FlxTilemap
 		for (i in 0...matrix.length) {
 			for (j in 0...matrix.length) {
 				if (matrix[i][j] == 0) {
-					matrix[i][j] = FlxMath.rand(1,11);
+					var temp = FlxMath.rand(1,11);
+					if (temp >= 4 && temp <= 7) {
+						var YoN = FlxMath.rand(0,100);
+						if (YoN >= 50) {
+							matrix[i][j] = temp; 
+						} else {
+							matrix[i][j] = 8;
+						}
+					} else {
+						matrix[i][j] = temp;
+					}	
 				} else {
-					matrix[i][j] = FlxMath.rand(12,15);
+						matrix[i][j] = FlxMath.rand(12,19);
 				}
 			}
 		}
+			
 		level = FlxCaveGenerator.convertMatrixToStr(matrix);
-		FlxG.log(level);
+		
 		loadMap(level, tileset, width, height, this.auto);
-		for (i in 1...11) {
+		for (i in 1...12) {
 			this.setTileProperties(i,FlxObject.NONE);
 		}
 
-		for (i in 12...15) {
+		for (i in 12...20) {
 			this.setTileProperties(i,FlxObject.ANY);
 		}
 
 
 
-		FlxG.worldBounds = new FlxRect(0, 0, this.width, this.height);
+		FlxG.worldBounds = new FlxRect(0, 0, this.width-60, this.height);
 	}
 }

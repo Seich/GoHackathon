@@ -8,12 +8,21 @@ import org.flixel.FlxState;
 import org.flixel.FlxText;
 import org.flixel.FlxTilemap;
 import org.flixel.FlxU;
+<<<<<<< HEAD
 
 /* IMPORTS FOR RAIN PURPOSES
 import org.flixel.FlxEmitter;
 import org.flixel.FlxParticle;
 */
 
+=======
+import org.flixel.FlxPath;
+import org.flixel.FlxPoint;
+import org.flixel.FlxObject;
+/*
+import org.flixel.FlxEmitter;
+import org.flixel.FlxParticle;*/
+>>>>>>> acb83efd92d1ddec2601e5aa698f10a22a22ef02
 import org.flixel.plugin.photonstorm.FlxBar;
 import org.flixel.plugin.photonstorm.FlxControl;
 import org.flixel.plugin.photonstorm.FlxControlHandler;
@@ -39,7 +48,14 @@ class PlayState extends FlxState
 		FlxControl.player1.setStandardSpeed(250, false);
 		FlxControl.player1.setFireButton("SPACE", FlxControlHandler.KEYMODE_PRESSED, 250, Registry.player.gun.fire);
 
-		/* DESCOMENTAR IMPORTS DE RAIN
+		Registry.zombies = new ZombieManager(5, 5000);
+
+		add(Registry.level);
+		add(Registry.player);
+		add(Registry.zombies);
+		add(Registry.player.gun.group);
+
+		/*
 		var rainEmitter:FlxEmitter = new FlxEmitter(0, 0, 200);
 	    rainEmitter.setSize(FlxG.width, 0);
 	    rainEmitter.setXSpeed(5, 5);
@@ -64,30 +80,27 @@ class PlayState extends FlxState
         #end
 		rainEmitter.start(false, 10, .1);
         */  
-
-		Registry.zombies = new ZombieManager(5);
-
-		FlxG.watch(FlxG.camera.scroll, "x");
-		FlxG.watch(FlxG.camera.scroll, "y");
-		FlxG.watch(FlxG.camera, "width");
-		FlxG.watch(FlxG.camera, "height");
-
-		add(Registry.level);
-		add(Registry.player);
-		add(Registry.zombies);
 	}
 	
-	override public function destroy():Void
-	{
+	override public function destroy():Void {
 		FlxControl.clear();
 		super.destroy();
 	}
 
-	override public function update():Void
-	{	
+	function bulletHitZombie(bullet:FlxObject, enemy:FlxObject):Void {
+		var zombie = cast(enemy, Zombie);
+
+		zombie.hurt(1);
+		bullet.kill();
+	}
+	
+	override public function update():Void {	
 		super.update();
 		FlxG.collide(Registry.zombies, Registry.level);
 		FlxG.collide(Registry.player, Registry.level);
 		Registry.level.follow();
+		Registry.zombies.callAll("getPath");
+		FlxG.overlap(Registry.player.gun.group, Registry.zombies, bulletHitZombie);
 	}
+
 }
