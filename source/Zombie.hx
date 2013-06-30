@@ -26,8 +26,8 @@ class Zombie extends FlxSprite {
         this.addAnimation("left", [12, 15], 6, false);
         this.addAnimation("kill",[16,19], 9, false);
         this.addAnimation("hit-down", [20,21],4,false);
-        this.addAnimation("hit-right",22,6,false);
-        this.addAnimation("hit-left",23,6,false);
+        this.addAnimation("hit-right",[22],6,false);
+        this.addAnimation("hit-left",[23],6,false);
         this.addAnimation("hit-up",[8,9],6,false);
         this.addAnimation("attack-down",[24,25],6,false);
         this.addAnimation("attack-up",[26,27],6,false);
@@ -113,42 +113,42 @@ class Zombie extends FlxSprite {
             exists = false;
             this.kill();
         }
-        amIAttacking();
+        /*amIAttacking();
         if (this.facing == FlxObject.UP) {
-            if (/*Attacking*/) {
+            if (Attacking) {
 
-            } else if (/*Hitted*/) {
+            } else if (Hitted) {
 
             } else {
                 this.play("up");       
             }
         } else if (this.facing == FlxObject.DOWN) {
-            if (/*Attacking*/) {
+            if (Attacking) {
 
-            } else if (/*Hitted*/) {
+            } else if (Hitted) {
 
             } else {
                 this.play("down");       
             
         } else if (this.facing == FlxObject.LEFT) { 
-            } if (/*Attacking*/) {
+            } if (Attacking) {
 
-            } else if (/*Hitted*/) {
+            } else if (Hitted) {
 
             } else {
                 this.play("left");     
             } 
             
         } else if (this.facing == FlxObject.RIGHT) { 
-            } if (/*Attacking*/) {
+            } if (Attacking) {
 
-            } else if (/*Hitted*/) {
+            } else if (Hitted) {
 
             } else {
                 this.play("right");     
             } 
 
-        } 
+        } */
     }
 
 }
