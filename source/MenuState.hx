@@ -32,7 +32,6 @@ class MenuState extends FlxState
 
 		var startButton = new FlxButton(Lib.current.stage.stageWidth/2 ,Lib.current.stage.stageHeight/2,"Start",onStartClick);
 		add(startButton);
-        FlxG.switchState(new PlayState());
 	}
 	
 	override public function destroy():Void

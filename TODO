@@ -6,7 +6,9 @@ TODO
 - Tiles
 - Audio
 - Title Screen
+- Adjust Character bounding box
 - Level Exit
+- Check that the level can be reached.
 - Android
 - Android Joystick
 - Zombie Health Bar
