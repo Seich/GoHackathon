@@ -23,15 +23,14 @@ class MenuState extends FlxState
 			FlxG.bgColor = 0xff131c1b;
 		#else
 			FlxG.camera.bgColor = {rgb: 0x131c1b, a: 0xff};
-		
 		#end		
+
 		#if !FLX_NO_MOUSE
 			FlxG.mouse.show();
 		#end
 		
 		var startButton = new FlxButton(Lib.current.stage.stageWidth/2 ,Lib.current.stage.stageHeight/2,"Start",onStartClick);
 		add(startButton);
-		//FlxDisplay.screenCenter(startButton,true,true);	
 	}
 	
 	override public function destroy():Void

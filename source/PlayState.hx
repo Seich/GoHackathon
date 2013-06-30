@@ -6,17 +6,14 @@ import org.flixel.FlxG;
 import org.flixel.FlxSprite;
 import org.flixel.FlxState;
 import org.flixel.FlxText;
-import org.flixel.FlxU;
 import org.flixel.FlxTilemap;
+import org.flixel.FlxU;
 import org.flixel.plugin.photonstorm.FlxBar;
 import org.flixel.plugin.photonstorm.FlxControl;
 import org.flixel.plugin.photonstorm.FlxControlHandler;
 
 class PlayState extends FlxState 
 {
-	var player: Player;
-	var cave: Cave;
-
 	override public function create():Void
 	{
 		// Load player controller
@@ -25,22 +22,22 @@ class PlayState extends FlxState
 			FlxG.addPlugin(new FlxControl());
 		}
 
-		// Create player
-		player = new Player();
+		// create Player		
+		Registry.player = new Player();
 		
 		// Create player controls
-		FlxControl.create(player, FlxControlHandler.MOVEMENT_INSTANT, FlxControlHandler.STOPPING_INSTANT);
-		FlxControl.player1.setStandardSpeed(100, false);
+		FlxControl.create(Registry.player, FlxControlHandler.MOVEMENT_INSTANT, FlxControlHandler.STOPPING_INSTANT);
+		FlxControl.player1.setStandardSpeed(250, false);
+		FlxControl.player1.setFireButton("SPACE", FlxControlHandler.KEYMODE_PRESSED, 250, Registry.player.gun.fire);
+
 		
-
 		// Generate Cave
-		cave = new Cave("assets/data/tile.png", 32, 32);
-
-
+		Registry.cave = new Cave("assets/data/tile.png", 32, 32);
 		var zombies = new ZombieManager(5);
 		add(zombies);
-		add(player);
-		add(cave);
+
+		add(Registry.cave);
+		add(Registry.player);
 	}
 	
 	override public function destroy():Void
@@ -50,8 +47,8 @@ class PlayState extends FlxState
 	}
 
 	override public function update():Void
-	{
+	{	
 		super.update();
-		FlxG.collide(player, cave);
+		FlxG.collide(Registry.player, Registry.cave);
 	}
 }
