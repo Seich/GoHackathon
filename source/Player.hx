@@ -1,6 +1,7 @@
 package ;
 
 import org.flixel.FlxG;
+import org.flixel.FlxObject;
 import org.flixel.FlxSprite;
 import org.flixel.FlxText;
 import org.flixel.plugin.photonstorm.FlxBar;
@@ -17,10 +18,15 @@ class Player extends FlxSprite
 	public function new()
 	{
 		super();
+
+		this.loadGraphic("assets/data/zombie1.png", true, false, 60, 60);
+		this.addAnimation("down", [0, 3], 6);
+		this.play("down");
+
 		health = 50;
 		healthBar = new FlxBar(16, 64, FlxBar.FILL_LEFT_TO_RIGHT, 64, 6, this, "health", 0, 100);
 		healthBar.trackParent(-32, -10);
-		
+
 		maxVelocity.x = 80;
 		maxVelocity.y = 80;
 		
@@ -39,9 +45,25 @@ class Player extends FlxSprite
 		super.update();
 		FlxG.camera.follow(this);
 
-		if (FlxG.keys.UP) { gun.setBulletDirection(FlxWeapon.BULLET_UP, bullet_speed); }
-		if (FlxG.keys.LEFT) { gun.setBulletDirection(FlxWeapon.BULLET_LEFT, bullet_speed); }
-		if (FlxG.keys.DOWN) { gun.setBulletDirection(FlxWeapon.BULLET_DOWN, bullet_speed); }
-		if (FlxG.keys.RIGHT) { gun.setBulletDirection(FlxWeapon.BULLET_RIGHT, bullet_speed); }
+		if (FlxG.keys.UP) {
+			gun.setBulletDirection(FlxWeapon.BULLET_UP, bullet_speed); 
+			this.facing = FlxObject.UP;
+		}
+
+		if (FlxG.keys.LEFT) {
+		 	gun.setBulletDirection(FlxWeapon.BULLET_LEFT, bullet_speed); 
+			this.facing = FlxObject.LEFT;
+		}
+
+		if (FlxG.keys.DOWN) {
+			gun.setBulletDirection(FlxWeapon.BULLET_DOWN, bullet_speed); 
+			this.facing = FlxObject.DOWN;
+		}
+
+		if (FlxG.keys.RIGHT) {
+			gun.setBulletDirection(FlxWeapon.BULLET_RIGHT, bullet_speed); 
+			this.facing = FlxObject.RIGHT;
+		}
+
 	}
 }
