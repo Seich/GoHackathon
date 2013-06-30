@@ -80,7 +80,6 @@ class PlayState extends FlxState
 
 	function bulletHitZombie(bullet:FlxObject, enemy:FlxObject):Void {
 		var zombie = cast(enemy, Zombie);
-
 		zombie.hurt(1);
 		bullet.kill();
 	}
