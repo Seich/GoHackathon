@@ -8,12 +8,21 @@ import org.flixel.FlxState;
 import org.flixel.FlxText;
 import org.flixel.FlxTilemap;
 import org.flixel.FlxU;
+<<<<<<< HEAD
+
+/* IMPORTS FOR RAIN PURPOSES
+import org.flixel.FlxEmitter;
+import org.flixel.FlxParticle;
+*/
+
+=======
 import org.flixel.FlxPath;
 import org.flixel.FlxPoint;
 import org.flixel.FlxObject;
 /*
 import org.flixel.FlxEmitter;
 import org.flixel.FlxParticle;*/
+>>>>>>> acb83efd92d1ddec2601e5aa698f10a22a22ef02
 import org.flixel.plugin.photonstorm.FlxBar;
 import org.flixel.plugin.photonstorm.FlxControl;
 import org.flixel.plugin.photonstorm.FlxControlHandler;
@@ -35,13 +44,9 @@ class PlayState extends FlxState
 		Registry.player = new Player();
 		
 		// Create player controls
-		
 		FlxControl.create(Registry.player, FlxControlHandler.MOVEMENT_INSTANT, FlxControlHandler.STOPPING_INSTANT);
 		FlxControl.player1.setStandardSpeed(250, false);
 		FlxControl.player1.setFireButton("SPACE", FlxControlHandler.KEYMODE_PRESSED, 250, Registry.player.gun.fire);
-
-		
-        
 
 		Registry.zombies = new ZombieManager(5, 5000);
 
@@ -73,7 +78,8 @@ class PlayState extends FlxState
         var myAtlas = createAtlas("particles", 128, 128);
         rainEmitter.atlas = myAtlas;
         #end
-		rainEmitter.start(false, 10, .1);*/
+		rainEmitter.start(false, 10, .1);
+        */  
 	}
 	
 	override public function destroy():Void {
