@@ -22,6 +22,9 @@ class PlayState extends FlxState
 			FlxG.addPlugin(new FlxControl());
 		}
 
+		// Generate Cave
+		Registry.level = new Level("assets/data/tile.png", 32, 32);
+
 		// create Player		
 		Registry.player = new Player();
 		
@@ -30,8 +33,6 @@ class PlayState extends FlxState
 		FlxControl.player1.setStandardSpeed(250, false);
 		FlxControl.player1.setFireButton("SPACE", FlxControlHandler.KEYMODE_PRESSED, 250, Registry.player.gun.fire);
 		
-		// Generate Cave
-		Registry.level = new Level("assets/data/tile.png", 32, 32);
 		var zombies = new ZombieManager(5);
 
 		add(zombies);
@@ -49,5 +50,6 @@ class PlayState extends FlxState
 	{	
 		super.update();
 		FlxG.collide(Registry.player, Registry.level);
+		Registry.level.follow();
 	}
 }

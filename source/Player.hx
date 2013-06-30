@@ -4,6 +4,7 @@ import org.flixel.FlxG;
 import org.flixel.FlxObject;
 import org.flixel.FlxSprite;
 import org.flixel.FlxText;
+import org.flixel.FlxRect;
 import org.flixel.plugin.photonstorm.FlxBar;
 import org.flixel.plugin.photonstorm.FlxControl;
 import org.flixel.plugin.photonstorm.FlxControlHandler;
@@ -39,7 +40,8 @@ class Player extends FlxSprite
 
 
 		gun = new FlxWeapon("gun", this);
-		gun.makeImageBullet(50, "assets/data/bullet.png", 100);
+		gun.makeImageBullet(50, "assets/data/bullet.png", 50, 5, true);
+		gun.bounds = new FlxRect(0, 0, Registry.level.width, Registry.level.height);
 
 		FlxG.state.add(gun.group);
 	}
@@ -48,6 +50,7 @@ class Player extends FlxSprite
 	{
 		super.update();
 		FlxG.camera.follow(this);
+		FlxG.camera.followAdjust(0.5, 0.5);
 
 		if (FlxG.keys.UP) {
 			gun.setBulletDirection(FlxWeapon.BULLET_UP, bullet_speed); 
@@ -69,6 +72,8 @@ class Player extends FlxSprite
 			this._dir = "right"; 
 		}
 
-		this.play(this._dir);
+		if (FlxG.keys.UP || FlxG.keys.DOWN || FlxG.keys.LEFT || FlxG.keys.RIGHT) {
+			this.play(this._dir);
+		}
 	}
 }
