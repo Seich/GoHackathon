@@ -115,14 +115,12 @@ class Zombie extends FlxSprite {
             exists = false;
             this.kill();
         }
-
         if (this.dead) {
             if (this._curFrame == 4) {
                 super.kill();
             } else {
                 this.play("kill");
             }
-
             return;
         }
 
@@ -146,7 +144,6 @@ class Zombie extends FlxSprite {
             this.velocity.x = 0;
             this.velocity.y = 0;
         }
-
     }
 
 }

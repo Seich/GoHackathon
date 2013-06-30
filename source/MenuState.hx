@@ -84,7 +84,7 @@ class MenuState extends FlxState
 		}
 
 		if (FlxG.keys.SPACE || FlxG.mouse.justPressed()) {
-        	FlxG.switchState(new PlayState());
+        	FlxG.switchState(new MovieState(1));
 		}
 
 		super.update();
@@ -92,6 +92,7 @@ class MenuState extends FlxState
 
 	private function onStartClick( ):Void
     {
-        FlxG.switchState(new PlayState());
+    	FlxG.switchState(new MovieState(1));
+        //FlxG.switchState(new PlayState());
     }
 }

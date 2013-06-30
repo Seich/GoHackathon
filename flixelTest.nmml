@@ -18,6 +18,12 @@
 		<!-- Your sound embedding code here... -->
 		
 	</assets>
+	<assets path="assets" if="android" >
+		<sound path="data/beep.wav" id="Beep" />
+		
+		<!-- Your sound embedding code here... -->
+		
+	</assets>
 	
 	<assets path="assets" if="desktop" >
 		<sound path="data/beep.wav" id="Beep" />
