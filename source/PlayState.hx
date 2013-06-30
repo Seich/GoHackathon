@@ -86,9 +86,11 @@ class PlayState extends FlxState
 	
 	override public function update():Void {	
 		super.update();
+
 		FlxG.collide(Registry.zombies, Registry.level);
 		FlxG.collide(Registry.player, Registry.level);
-		Registry.level.follow();
+
+		//Registry.level.follow();
 		Registry.zombies.callAll("getPath");
 		FlxG.overlap(Registry.player.gun.group, Registry.zombies, bulletHitZombie);
 	}

@@ -60,13 +60,12 @@ class Zombie extends FlxSprite {
 
     public function getPath() {
         if (playerPath != null) {
-
             this.stopFollowingPath(true);
         }
 
         var pathStart:FlxPoint = new FlxPoint(this.x + this.width / 2, this.y + this.height / 2);
         var pathEnd:FlxPoint = new FlxPoint(Registry.player.x + (Registry.player.width/2), Registry.player.y + (Registry.player.height/2));
-        playerPath = Registry.level.findPath(pathStart, pathEnd);
+       playerPath = Registry.level.findPath(pathStart, pathEnd);
          
         if (playerPath != null) {
             this.followPath(playerPath);     
