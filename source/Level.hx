@@ -19,22 +19,13 @@ class Level extends FlxTilemap
 
 		var matrixLength:Int = 100;
 		var matrix = new FlxCaveGenerator(matrixLength, matrixLength).generateCaveLevel();
-		for (i in 0...matrix.length) {
-			for (j in 0...matrix.length) {
+		for (i in 0...matrixLength) {
+			for (j in 0...matrixLength) {
 				if (matrix[i][j] == 0) {
-					var temp = FlxMath.rand(1,11);
-					if (temp >= 4 && temp <= 7) {
-						var YoN = FlxMath.rand(0,100);
-						if (YoN >= 50) {
-							matrix[i][j] = temp; 
-						} else {
-							matrix[i][j] = 8;
-						}
-					} else {
-						matrix[i][j] = temp;
-					}	
+					var temp = FlxMath.rand(1,100) > 20 ? FlxMath.rand(1,11, [4,5,6,7]) : FlxMath.rand(4,7);
+					matrix[i][j] = temp; 	
 				} else {
-						matrix[i][j] = FlxMath.rand(12,19);
+					matrix[i][j] = FlxMath.rand(12,19);
 				}
 			}
 		}
