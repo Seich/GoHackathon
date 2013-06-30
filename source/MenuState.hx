@@ -51,7 +51,7 @@ class MenuState extends FlxState
 
 		title = new FlxSprite(0, 0, "assets/data/title.png");
 		title.scale = new FlxPoint(0.9, 0.9);
-		title.x = (Lib.current.stage.width - title.width) / 2;
+		title.x = 100;
 		title.y = -100;
 
 		var board = new FlxSprite(0, 0, "assets/data/tablita.png");
@@ -66,8 +66,8 @@ class MenuState extends FlxState
 		add(grassTop);
 		add(grassBot);
 		add(glitch);
-		add(title);
 		add(board);
+		add(title);
 	}
 	
 	override public function destroy():Void
@@ -85,7 +85,7 @@ class MenuState extends FlxState
 			glitch.x += 10;
 		}
 
-		if (FlxG.keys.SPACE) {
+		if (FlxG.keys.SPACE || FlxG.mouse.justPressed()) {
         	FlxG.switchState(new PlayState());
 		}
 
