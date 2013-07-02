@@ -19,6 +19,8 @@ class Controller extends FlxGroup
 	var right: FlxSprite;
 
 	var fire: FlxSprite;
+	var counter:Float = 0;
+
 
 	public function new()
 	{
@@ -75,6 +77,8 @@ class Controller extends FlxGroup
 
 	override public function update(): Void
 	{
+		counter += FlxG.elapsed;
+
 		#if (ios || android)
 	    	touchInput();
 	    #end
@@ -87,7 +91,7 @@ class Controller extends FlxGroup
 	 
 	    for(touch in touches)
 	    {
-	        if (touch.pressed())
+	        if (touch.isActive())
 	        {
 	            // get touch position (relative to screen)
 	            var px:Int = touch.screenX;
@@ -119,14 +123,23 @@ class Controller extends FlxGroup
 
 	            if (fire.overlapsPoint(new FlxPoint(px, py))) {
 	            	fire.frame = 2;
-	            	Registry.player.gun.fire();
+	            	if (counter >= 0.5) {
+	            		Registry.player.gun.fire();
+	            		counter = 0;
+	            	}
 	            }
-	            
+
 	            Registry.player._touch = true;
 	        } else {
 	        	this.setAll("frame", 1);
 	        	Registry.player.velocity = new FlxPoint(0, 0);
 	            Registry.player._touch = false;
+	        }
+
+	        if (touch.justReleased()) {
+	        	this.setAll("frame", 1);
+	        	Registry.player.velocity = new FlxPoint(0, 0);
+	            Registry.player._touch = false;	
 	        }
 	    }
 	}

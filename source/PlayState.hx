@@ -32,7 +32,7 @@ class PlayState extends FlxState
 		Registry.player = new Player();
 
 		// Zombehs!		
-		Registry.zombies = new ZombieManager(30, 5000);
+		Registry.zombies = new ZombieManager(10, 5000);
 
 		// Create player controls
 		#if (ios || android)
@@ -69,7 +69,6 @@ class PlayState extends FlxState
 		if (!cat.flickering) {
 			cat.hurt(1);
 			cat.flicker(1);
-			FlxG.log(cat.health);
 		}
 	}
 	

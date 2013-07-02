@@ -19,6 +19,7 @@ class Player extends FlxSprite
 	public var _dir: String;
 	public var gun: FlxWeapon;
 	public var _touch: Bool;
+	var dead: Bool;
 
 	public function new()
 	{
@@ -37,7 +38,7 @@ class Player extends FlxSprite
 		this.addAnimation("kill",[28,35],34,false);
 
 		this.play("down");
-		health = 5;
+		health = 9;
 		healthBar = new FlxBar(16, 64, FlxBar.FILL_LEFT_TO_RIGHT, 64, 6, this, "health", 0, 100);
 		healthBar.trackParent(-32, -10);
 
@@ -73,6 +74,13 @@ class Player extends FlxSprite
 		
 		this.gun.fire();
 
+	}
+
+	override public function kill():Void {	
+		this.play("kill");
+		this.dead = true;
+		FlxG.switchState(new GameOver());
+		super.kill();
 	}
 
 	public function worldBound() {
